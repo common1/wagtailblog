@@ -21,3 +21,15 @@ pip install wagtail==5.1.1
 
 ```bash
 ```
+
+## 545. Page Templates: The Art of Structuring Your Wagtail Pages
+
+```bash
+python manage.py startapp images
+```
+
+## 546. Custom ImageModel: Flex Your Wagtail Image Handling
+
+```bash
+```
+

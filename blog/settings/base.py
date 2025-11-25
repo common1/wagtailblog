@@ -182,4 +182,5 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
 
 WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
+WAGTAILIMAGES_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'tiff', 'bmp', 'webp']
 

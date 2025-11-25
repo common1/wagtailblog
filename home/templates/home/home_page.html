@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block title %}{{ page.title }}{% endblock title %}
 
@@ -11,5 +11,10 @@
 {% if page.body %}
     {{ page.body|richtext }}
 {% endif %}
+
+<hr>
+
+{% image page.image max-320x320 as custom_img %}
+<img src="{{ custom_img.url }}" alt="{{ page.image.title }}">
 
 {% endblock content %}

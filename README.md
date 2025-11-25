@@ -33,3 +33,13 @@ python manage.py startapp images
 ```bash
 ```
 
+## 547. Using Images in Wagtail Templates
+
+[https://docs.wagtail.org/en/7.0/advanced_topics/images/index.html]
+[https://www.svgrepo.com/]
+[https://docs.wagtail.org/en/stable/topics/images.html]
+
+```bash
+```
+
+

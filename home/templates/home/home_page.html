@@ -5,16 +5,14 @@
 
 {% block content %}
 
-<h1>{{ page.title }}</h1>
-<h3>{{ page.subtitle }}</h3>
+    {% if page.custom_document %}
 
-{% if page.body %}
-    {{ page.body|richtext }}
-{% endif %}
+        This is the download url : 
+        <a href="{{ page.custom_document.url }}">Download</a>
 
-<hr>
-
-{% image page.image max-320x320 as custom_img %}
-<img src="{{ custom_img.url }}" alt="{{ page.image.title }}">
+        {{ page.custom_document.title }}
+        -
+        {{ page.custom_document.description}}
+    {% endif %}
 
 {% endblock content %}

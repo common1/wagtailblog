@@ -42,4 +42,9 @@ python manage.py startapp images
 ```bash
 ```
 
+## 548. File Handling 101 (Wagtail Documents)
+
+```bash
+python manage.py startapp documents
+```
 

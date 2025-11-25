@@ -9,6 +9,7 @@ class HomePage(Page):
     body = RichTextField(blank=True)
     
     content_panels = Page.content_panels + [
-        FieldPanel('subtitle'), 
+        FieldPanel('subtitle', read_only=True), 
+        FieldPanel('body'),
     ]
 

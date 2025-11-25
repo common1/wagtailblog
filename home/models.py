@@ -5,6 +5,8 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 
 class HomePage(Page):
+    # template = "home/home_page.html"
+    
     subtitle = models.CharField(max_length=100, blank=True, null=True)
     body = RichTextField(blank=True)
     

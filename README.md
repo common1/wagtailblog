@@ -17,3 +17,7 @@ pip install wagtail --upgrade
 pip install wagtail==5.1.1
 ```
 
+## 545. Page Templates: The Art of Structuring Your Wagtail Pages
+
+```bash
+```

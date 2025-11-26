@@ -47,3 +47,8 @@ python manage.py startapp documents
 ```bash
 ```
 
+## 550. Limiting Page Creation
+
+```bash
+```
+

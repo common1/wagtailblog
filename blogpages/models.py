@@ -4,6 +4,8 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 
+from django.core.exceptions import ValidationError
+
 class BlogIndex(Page):
     # A listing page of all child pages
     
@@ -25,6 +27,8 @@ class BlogIndex(Page):
         context['blogpages'] = BlogDetail.objects.live().public()
         return context
 
+
+
 class BlogDetail(Page):   
     parent_page_types = ['blogpages.BlogIndex']
     subpage_types = []
@@ -37,3 +41,19 @@ class BlogDetail(Page):
         FieldPanel('body'),
     ]
 
+    def clean(self):
+        super().clean()
+        
+        errors = {}
+        
+        if 'blog' in self.title.lower():
+            errors['title'] = "Title cannot have the word 'blog'"
+
+        if 'blog' in self.subtitle.lower():
+            errors['subtitle'] = "Subtitle cannot have the word 'blog'"
+        
+        if 'blog' in self.slug.lower():
+            errors['slug'] = "Slug cannot have the word 'blog'"
+        
+        if errors:
+            raise ValidationError(errors)

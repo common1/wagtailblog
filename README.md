@@ -57,3 +57,9 @@ python manage.py startapp documents
 ```bash
 ```
 
+## 552. Mastering Custom Page Validation in Wagtail CMS
+
+
+```bash
+```
+

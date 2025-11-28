@@ -5,8 +5,7 @@
 
 {% block content %}
 
-
-{% comment %} {% if page.cta_url or page.cta_external_url %}
+{% if page.cta_url or page.cta_external_url %}
     {% if page.cta_url %}
         <a href="{{ page.cta_url.url }}">
             {{ page.cta_url.title }}
@@ -16,8 +15,8 @@
             Some website
         </a>
     {% endif%}
-{% endif %} {% endcomment %}
-
+{% endif %}
+<br>
 {% if page.get_cta_url %}
     {{ page.get_cta_url }}
 {% endif %}

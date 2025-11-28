@@ -68,3 +68,8 @@ python manage.py startapp documents
 ```bash
 ```
 
+## 554. How to Install a Release Candidate Version of Wagtail CMS
+
+```bash
+```
+

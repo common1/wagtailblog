@@ -6,6 +6,10 @@ from wagtail.admin.panels import FieldPanel
 
 from django.core.exceptions import ValidationError
 
+from modelcluster.fields import ParentalKey
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from taggit.models import TaggedItemBase
+
 class BlogIndex(Page):
     # A listing page of all child pages
     
@@ -27,7 +31,12 @@ class BlogIndex(Page):
         context['blogpages'] = BlogDetail.objects.live().public()
         return context
 
-
+class BlogPageTags(TaggedItemBase):
+    content_object = ParentalKey(
+        'blogpages.BlogDetail',
+        related_name='tagged_items',
+        on_delete=models.CASCADE
+    )
 
 class BlogDetail(Page):   
     parent_page_types = ['blogpages.BlogIndex']
@@ -38,9 +47,11 @@ class BlogDetail(Page):
         blank=True,
         features=['blockquote', 'h3', 'image', 'ul', 'strikethrough', 'code'],
     )
+    tags = ClusterTaggableManager(through=BlogPageTags, blank=True)
     
     content_panels = Page.content_panels + [
         FieldPanel('subtitle'),
+        FieldPanel('tags'),
         FieldPanel('body'),
     ]
 

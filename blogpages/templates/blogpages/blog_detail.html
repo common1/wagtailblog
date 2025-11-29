@@ -17,4 +17,11 @@
     <div class="richtext">
         {{ page.body|richtext }}
     </div>
+
+    <h3>Tags</h3>
+
+    {% for tag in page.tags.all %}
+        {{ tag.name }} {{ tag.slug }}<br>
+    {% endfor %}
+
 {% endblock content %}

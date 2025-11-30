@@ -10,6 +10,9 @@ from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
+from wagtail.fields import StreamField
+from wagtail.blocks import TextBlock
+from wagtail.images.blocks import ImageChooserBlock
 class BlogIndex(Page):
     # A listing page of all child pages
     
@@ -39,20 +42,30 @@ class BlogPageTags(TaggedItemBase):
     )
 
 class BlogDetail(Page):   
-    parent_page_types = ['blogpages.BlogIndex']
-    subpage_types = []
-
     subtitle = models.CharField(max_length=100, blank=True)
-    body = RichTextField(
-        blank=True,
-        features=['blockquote', 'h3', 'image', 'ul', 'strikethrough', 'code'],
-    )
     tags = ClusterTaggableManager(through=BlogPageTags, blank=True)
     
+    body = StreamField(
+        [
+            ('text', TextBlock()),
+            ('image', ImageChooserBlock(),)
+        ],
+        block_counts={
+            'text': {'min_num': 1},
+            'image': {'max_num': 1}
+        },
+        use_json_field=True,
+        blank=True,
+        null=True,
+    )
+
+    parent_page_types = ['blogpages.BlogIndex']
+    subpage_types = []
+    
     content_panels = Page.content_panels + [
-        FieldPanel('subtitle'),
-        FieldPanel('tags'),
         FieldPanel('body'),
+        # FieldPanel('subtitle'),
+        # FieldPanel('tags'),
     ]
 
     def clean(self):

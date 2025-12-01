@@ -13,6 +13,9 @@ from taggit.models import TaggedItemBase
 from wagtail.fields import StreamField
 from wagtail.blocks import TextBlock
 from wagtail.images.blocks import ImageChooserBlock
+
+from wagtail import blocks
+
 class BlogIndex(Page):
     # A listing page of all child pages
     
@@ -48,7 +51,18 @@ class BlogDetail(Page):
     body = StreamField(
         [
             ('text', TextBlock()),
-            ('image', ImageChooserBlock(),)
+            ('image', ImageChooserBlock()),
+            ('carousel', blocks.StreamBlock(
+                [
+                    ('image', ImageChooserBlock()),
+                    ('quotation', blocks.StructBlock(
+                       [
+                           ('text', TextBlock()),
+                           ('author', TextBlock()),
+                       ],
+                    )),
+                ],
+            )),
         ],
         block_counts={
             'text': {'min_num': 1},

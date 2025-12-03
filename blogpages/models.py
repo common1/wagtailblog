@@ -44,29 +44,34 @@ class BlogPageTags(TaggedItemBase):
         on_delete=models.CASCADE
     )
 
+# 1. ImageChooserBlock
+# 2. DocumentChooserBlock
+# 3. PageChooserBlock
+# 4. SnippetChooserBlock
+
 class BlogDetail(Page):   
     subtitle = models.CharField(max_length=100, blank=True)
     tags = ClusterTaggableManager(through=BlogPageTags, blank=True)
     
     body = StreamField(
         [
-            ('text', TextBlock()),
             ('image', ImageChooserBlock()),
-            ('carousel', blocks.StreamBlock(
-                [
-                    ('image', ImageChooserBlock()),
-                    ('quotation', blocks.StructBlock(
-                       [
-                           ('text', TextBlock()),
-                           ('author', TextBlock()),
-                       ],
-                    )),
-                ],
-            )),
+            # ('text', TextBlock()),
+            # ('carousel', blocks.StreamBlock(
+            #     [
+            #         ('image', ImageChooserBlock()),
+            #         ('quotation', blocks.StructBlock(
+            #            [
+            #                ('text', TextBlock()),
+            #                ('author', TextBlock()),
+            #            ],
+            #         )),
+            #     ],
+            # )),
         ],
         block_counts={
-            'text': {'min_num': 1},
-            'image': {'max_num': 1}
+            # 'text': {'min_num': 1},
+            # 'image': {'max_num': 1},
         },
         use_json_field=True,
         blank=True,

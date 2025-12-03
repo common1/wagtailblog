@@ -97,3 +97,8 @@ python manage.py startapp documents
 ```bash
 ```
 
+## 559. ChooserBlocks in Wagtail CMS: A Comprehensive Guide
+
+```bash
+```
+

@@ -13,6 +13,7 @@ from taggit.models import TaggedItemBase
 from wagtail.fields import StreamField
 from wagtail.blocks import TextBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.documents.blocks import DocumentChooserBlock
 
 from wagtail import blocks
 
@@ -56,21 +57,23 @@ class BlogDetail(Page):
     body = StreamField(
         [
             ('image', ImageChooserBlock()),
-            ('text', TextBlock()),
-            ('carousel', blocks.StreamBlock(
-                [
-                    ('image', ImageChooserBlock()),
-                    ('quotation', blocks.StructBlock(
-                       [
-                           ('text', TextBlock()),
-                           ('author', TextBlock()),
-                       ],
-                    )),
-                ],
-            )),
+            ('doc', DocumentChooserBlock()),
+            ('page', blocks.PageChooserBlock()),
+            # ('text', TextBlock()),
+            # ('carousel', blocks.StreamBlock(
+            #     [
+            #         ('image', ImageChooserBlock()),
+            #         ('quotation', blocks.StructBlock(
+            #            [
+            #                ('text', TextBlock()),
+            #                ('author', TextBlock()),
+            #            ],
+            #         )),
+            #     ],
+            # )),
         ],
         block_counts={
-            'text': {'min_num': 1},
+            # 'text': {'min_num': 1},
             'image': {'max_num': 1},
         },
         use_json_field=True,

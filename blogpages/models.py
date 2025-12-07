@@ -56,22 +56,22 @@ class BlogDetail(Page):
     body = StreamField(
         [
             ('image', ImageChooserBlock()),
-            # ('text', TextBlock()),
-            # ('carousel', blocks.StreamBlock(
-            #     [
-            #         ('image', ImageChooserBlock()),
-            #         ('quotation', blocks.StructBlock(
-            #            [
-            #                ('text', TextBlock()),
-            #                ('author', TextBlock()),
-            #            ],
-            #         )),
-            #     ],
-            # )),
+            ('text', TextBlock()),
+            ('carousel', blocks.StreamBlock(
+                [
+                    ('image', ImageChooserBlock()),
+                    ('quotation', blocks.StructBlock(
+                       [
+                           ('text', TextBlock()),
+                           ('author', TextBlock()),
+                       ],
+                    )),
+                ],
+            )),
         ],
         block_counts={
-            # 'text': {'min_num': 1},
-            # 'image': {'max_num': 1},
+            'text': {'min_num': 1},
+            'image': {'max_num': 1},
         },
         use_json_field=True,
         blank=True,

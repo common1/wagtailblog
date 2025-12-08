@@ -32,7 +32,7 @@
         {% elif block.block_type == 'doc' %}
             <a href="{{ block.value.url }}">{{ block.value.title }}</a>
         {% elif block.block_type == 'page' %}
-            {{ block.value }}
+            {{ block.value.url }}
         {% endif %}
 
     {% endfor %}

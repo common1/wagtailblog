@@ -14,7 +14,7 @@ from wagtail.fields import StreamField
 from wagtail.blocks import TextBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
-
+from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail import blocks
 
 class BlogIndex(Page):
@@ -45,6 +45,18 @@ class BlogPageTags(TaggedItemBase):
         on_delete=models.CASCADE
     )
 
+class Author(models.Model):
+    name = models.CharField(max_length=255)
+    bio = models.TextField()
+    
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('bio')
+    ]
+    
+    def __str__(self):
+        return self.name
+    
 # 1. ImageChooserBlock
 # 2. DocumentChooserBlock
 # 3. PageChooserBlock
@@ -58,7 +70,10 @@ class BlogDetail(Page):
         [
             ('image', ImageChooserBlock()),
             ('doc', DocumentChooserBlock()),
-            ('page', blocks.PageChooserBlock()),
+            ('page', blocks.PageChooserBlock(
+                required=False,
+                page_type='home.HomePage',
+            )),
             # ('text', TextBlock()),
             # ('carousel', blocks.StreamBlock(
             #     [

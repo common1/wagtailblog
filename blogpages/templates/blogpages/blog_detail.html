@@ -28,11 +28,13 @@
         {% endcomment %}
 
         {% if block.block_type == 'image' %}
-            {% image block.value fill-300x300 %}
+            {% comment %} {% image block.value fill-300x300 %} {% endcomment %}
         {% elif block.block_type == 'doc' %}
-            <a href="{{ block.value.url }}">{{ block.value.title }}</a>
+            {% comment %} <a href="{{ block.value.url }}">{{ block.value.title }}</a> {% endcomment %}
         {% elif block.block_type == 'page' %}
-            {{ block.value.url }}
+            <a href="{{ block.value.url }}">
+                {{ block.value.title }}
+            <a/>
         {% endif %}
 
     {% endfor %}

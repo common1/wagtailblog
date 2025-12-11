@@ -48,12 +48,7 @@ class BlogPageTags(TaggedItemBase):
 class Author(models.Model):
     name = models.CharField(max_length=255)
     bio = models.TextField()
-    
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('bio')
-    ]
-    
+       
     def __str__(self):
         return self.name
     

@@ -69,6 +69,7 @@ class BlogDetail(Page):
                 required=False,
                 page_type='home.HomePage',
             )),
+            ('author', SnippetChooserBlock('blogpages.author')),
             # ('text', TextBlock()),
             # ('carousel', blocks.StreamBlock(
             #     [
@@ -81,6 +82,20 @@ class BlogDetail(Page):
             #         )),
             #     ],
             # )),
+            ('call_to_action_1', blocks.StructBlock(
+                [
+                    ('text', blocks.RichTextBlock(
+                        features=['bold', 'italic'],
+                        required=True
+                    )),
+                    ('page', blocks.PageChooserBlock()),
+                    ('button_text', blocks.CharBlock(
+                        max_length=100,
+                        required=False,
+                    )),
+                ],
+                label='CTA #1',
+            )),
         ],
         block_counts={
             # 'text': {'min_num': 1},

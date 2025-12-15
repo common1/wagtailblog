@@ -110,6 +110,10 @@ Part 5
 ## 560. Exploring Wagtail's StaticBlock and ListBlock
 
 ```
+Part 1
+Some changes
+Part 2
+Some changes
 ```
 
 ```bash

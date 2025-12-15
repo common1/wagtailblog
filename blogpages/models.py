@@ -63,6 +63,32 @@ class BlogDetail(Page):
     
     body = StreamField(
         [
+            ('info', blocks.StaticBlock(
+                admin_text='This is acontent divider with extra information.'
+            )),
+            ('faq', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('question', blocks.CharBlock()),
+                    ('answer', blocks.RichTextBlock(
+                        features=['bold', 'italic'],
+                    )), 
+                ]),
+                min_num=1,
+                max_num=5,
+                label='Frequently Asked Questions',
+            )),
+            ('text', TextBlock()),
+            ('carousel', blocks.StreamBlock(
+                [
+                    ('image', ImageChooserBlock()),
+                    ('quotation', blocks.StructBlock(
+                       [
+                           ('text', TextBlock()),
+                           ('author', TextBlock()),
+                       ],
+                    )),
+                ],
+            )),
             ('image', ImageChooserBlock()),
             ('doc', DocumentChooserBlock()),
             ('page', blocks.PageChooserBlock(
@@ -70,18 +96,6 @@ class BlogDetail(Page):
                 page_type='home.HomePage',
             )),
             ('author', SnippetChooserBlock('blogpages.author')),
-            # ('text', TextBlock()),
-            # ('carousel', blocks.StreamBlock(
-            #     [
-            #         ('image', ImageChooserBlock()),
-            #         ('quotation', blocks.StructBlock(
-            #            [
-            #                ('text', TextBlock()),
-            #                ('author', TextBlock()),
-            #            ],
-            #         )),
-            #     ],
-            # )),
             ('call_to_action_1', blocks.StructBlock(
                 [
                     ('text', blocks.RichTextBlock(

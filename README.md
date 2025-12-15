@@ -107,3 +107,11 @@ Part 5
 ```bash
 ```
 
+## 560. Exploring Wagtail's StaticBlock and ListBlock
+
+```
+```
+
+```bash
+```
+

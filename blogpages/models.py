@@ -17,6 +17,8 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail import blocks
 
+from blocks import blocks as custom_blocks
+
 class BlogIndex(Page):
     # A listing page of all child pages
     
@@ -63,21 +65,9 @@ class BlogDetail(Page):
     
     body = StreamField(
         [
-            ('info', blocks.StaticBlock(
-                admin_text='This is acontent divider with extra information.'
-            )),
-            ('faq', blocks.ListBlock(
-                blocks.StructBlock([
-                    ('question', blocks.CharBlock()),
-                    ('answer', blocks.RichTextBlock(
-                        features=['bold', 'italic'],
-                    )), 
-                ]),
-                min_num=1,
-                max_num=5,
-                label='Frequently Asked Questions',
-            )),
-            ('text', TextBlock()),
+            ('info', custom_blocks.InfoBlock()),
+            ('faq', custom_blocks.FAQListBlock()),
+            ('text', custom_blocks.TextBlock()),
             ('carousel', blocks.StreamBlock(
                 [
                     ('image', ImageChooserBlock()),
@@ -113,7 +103,7 @@ class BlogDetail(Page):
         ],
         block_counts={
             # 'text': {'min_num': 1},
-            'image': {'max_num': 1},
+            # 'image': {'max_num': 1},
         },
         use_json_field=True,
         blank=True,
@@ -125,8 +115,8 @@ class BlogDetail(Page):
     
     content_panels = Page.content_panels + [
         FieldPanel('body'),
-        # FieldPanel('subtitle'),
-        # FieldPanel('tags'),
+        FieldPanel('subtitle'),
+        FieldPanel('tags'),
     ]
 
     def clean(self):

@@ -118,4 +118,13 @@ Some changes
 
 ```bash
 ```
+## 561. Crafting Custom Wagtail Blocks (Backend)
+
+```
+blocks.blocks.py
+```
+
+```bash
+python manage.py startapp blocks
+```
 

@@ -1,11 +1,15 @@
 from wagtail import blocks
+from wagtail.images.blocks import ImageChooserBlock
 
 class TextBlock(blocks.TextBlock):
     
     def __init__(self, **kwargs):
         super().__init__(
             **kwargs,
-            help_text = "This is from my TextBlock (help text is here)"
+            help_text = "This is from my TextBlock (help text is here)",
+            max_length=5,
+            min_length=2,
+            required=False,
         )        
 
     class Meta:
@@ -37,3 +41,6 @@ class FAQListBlock(blocks.ListBlock):
         # icon = "..."
         # template = "..."
 
+class CarouselBlock(blocks.StreamBlock):
+    image = ImageChooserBlock()
+    

@@ -16,6 +16,7 @@ class TextBlock(blocks.TextBlock):
         # template = "..."
         ...
 
+
 class InfoBlock(blocks.StaticBlock):
     
     class Meta:
@@ -24,11 +25,13 @@ class InfoBlock(blocks.StaticBlock):
         admin_text = "This is my InfoBlock"
         label = "General Information"
 
+
 class FAQBlock(blocks.StructBlock):
     question = blocks.CharBlock()
     answer = blocks.RichTextBlock(
         features = ['bold', 'italic',]
     )
+
 
 class FAQListBlock(blocks.ListBlock):
     def __init__(self, **kwargs):
@@ -37,10 +40,41 @@ class FAQListBlock(blocks.ListBlock):
     class Meta:
         min_num = 1
         max_num = 5
-        label = "Frequently Asked Questions 2"
+        label = "Frequently Asked Questions"
         # icon = "..."
         # template = "..."
 
+
 class CarouselBlock(blocks.StreamBlock):
     image = ImageChooserBlock()
+    quotation = blocks.StructBlock(
+        [
+            ('text', blocks.TextBlock()),
+            ('author', blocks.TextBlock()),
+        ]
+    )
     
+    class Meta:
+        # template = "..."
+        ...
+
+
+class CallToAction1(blocks.StructBlock):
+    text = blocks.RichTextBlock(
+        features=['bold', 'italic'],
+        required=True,
+    )
+    page = blocks.PageChooserBlock()
+    button_text = blocks.CharBlock(
+        max_length=100,
+        required= False,
+    )
+
+    class Meta:
+        label="CTA #1"
+
+class ImageBlock(ImageChooserBlock):
+
+    class Meta:
+        template = "..."
+

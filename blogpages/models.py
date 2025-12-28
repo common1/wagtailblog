@@ -11,8 +11,6 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
 from wagtail.fields import StreamField
-from wagtail.blocks import TextBlock
-from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail import blocks
@@ -68,38 +66,15 @@ class BlogDetail(Page):
             ('info', custom_blocks.InfoBlock()),
             ('faq', custom_blocks.FAQListBlock()),
             ('text', custom_blocks.TextBlock()),
-            ('carousel', blocks.StreamBlock(
-                [
-                    ('image', ImageChooserBlock()),
-                    ('quotation', blocks.StructBlock(
-                       [
-                           ('text', TextBlock()),
-                           ('author', TextBlock()),
-                       ],
-                    )),
-                ],
-            )),
-            ('image', ImageChooserBlock()),
+            ('carousel', custom_blocks.CarouselBlock()),
+            ('image', custom_blocks.ImageBlock()),
             ('doc', DocumentChooserBlock()),
             ('page', blocks.PageChooserBlock(
                 required=False,
                 page_type='home.HomePage',
             )),
             ('author', SnippetChooserBlock('blogpages.author')),
-            ('call_to_action_1', blocks.StructBlock(
-                [
-                    ('text', blocks.RichTextBlock(
-                        features=['bold', 'italic'],
-                        required=True
-                    )),
-                    ('page', blocks.PageChooserBlock()),
-                    ('button_text', blocks.CharBlock(
-                        max_length=100,
-                        required=False,
-                    )),
-                ],
-                label='CTA #1',
-            )),
+            ('call_to_action_1', custom_blocks.CallToAction1()),
         ],
         block_counts={
             # 'text': {'min_num': 1},

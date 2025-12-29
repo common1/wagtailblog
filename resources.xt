@@ -31,3 +31,36 @@ blog_detail.html
 {% endblock content %}
 
 
+
+        {% if block.block_type == 'image' %}
+            {% image block.value fill-300x300 %}
+        {% elif block.block_type == 'doc' %}
+            <a href="{{ block.value.url }}">{{ block.value.title }}</a>
+        {% elif block.block_type == 'page' %}
+            <a href="{{ block.value.url }}">
+                {{ block.value.title }}
+            <a/>
+        {% elif block.block_type == 'author' %}
+            {{ block.value.bio }}
+        {% elif block.block_type == 'call_to_action_1' %}
+            <div>
+                <div class="rich-text">{{ block.value.text }}</div>
+                <a href="{{ block.value.page.url }}" class="button">
+                    {% if block.value.button_text %}
+                        {{ block.value.button_text }}
+                    {% else %}
+                        {{ block.value.page.title }}
+                    {% endif %}
+                </a>
+            </div>
+        {% elif block.block_type == 'info' %}
+            <div style='background-color: black; color: white; font-size: 24px; padding: 30px; text-align: center'>
+                Danger, Will Robinson
+            </div>
+        {% elif block.block_type == 'faq' %}
+            {% for faq in block.value %}
+                <h2>{{ faq.question }}</h2>
+                {{ faq.answer|richtext }}
+            {% endfor %}
+        {% endif %}
+

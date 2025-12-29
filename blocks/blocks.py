@@ -13,17 +13,19 @@ class TextBlock(blocks.TextBlock):
         )        
 
     class Meta:
-        # template = "..."
-        ...
-
+        template = "blocks/text_block.html"
+        icon = "strikethrough"
+        group = "Standalone blocks"
 
 class InfoBlock(blocks.StaticBlock):
     
     class Meta:
         # icon = "..."
-        # template = "..."
+        group = ""
+        template = "blocks/info_block.html"
         admin_text = "This is my InfoBlock"
         label = "General Information"
+        group = "Standalone blocks"
 
 
 class FAQBlock(blocks.StructBlock):
@@ -42,7 +44,8 @@ class FAQListBlock(blocks.ListBlock):
         max_num = 5
         label = "Frequently Asked Questions"
         # icon = "..."
-        # template = "..."
+        template = "blocks/faq_list_block.html"
+        group = "Iterables"
 
 
 class CarouselBlock(blocks.StreamBlock):
@@ -55,8 +58,8 @@ class CarouselBlock(blocks.StreamBlock):
     )
     
     class Meta:
-        # template = "..."
-        ...
+        template = "blocks/carousel_block.html"
+        group = "Iterables"
 
 
 class CallToAction1(blocks.StructBlock):
@@ -72,9 +75,11 @@ class CallToAction1(blocks.StructBlock):
 
     class Meta:
         label="CTA #1"
+        template = "blocks/call_to_action_1.html"
 
 class ImageBlock(ImageChooserBlock):
 
     class Meta:
-        template = "..."
+        template = "blocks/image_block.html"
+        group = "Standalone blocks"
 

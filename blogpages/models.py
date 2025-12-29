@@ -68,10 +68,13 @@ class BlogDetail(Page):
             ('text', custom_blocks.TextBlock()),
             ('carousel', custom_blocks.CarouselBlock()),
             ('image', custom_blocks.ImageBlock()),
-            ('doc', DocumentChooserBlock()),
+            ('doc', DocumentChooserBlock(
+                group = "Standalone blocks",
+            )),
             ('page', blocks.PageChooserBlock(
                 required=False,
                 page_type='home.HomePage',
+                group = "Standalone blocks",
             )),
             ('author', SnippetChooserBlock('blogpages.author')),
             ('call_to_action_1', custom_blocks.CallToAction1()),

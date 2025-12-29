@@ -128,3 +128,13 @@ blocks.blocks.py
 python manage.py startapp blocks
 ```
 
+## 562. Crafting Custom Wagtail Blocks (Frontend)
+
+[https://docs.wagtail.org/en/latest/advanced_topics/icons.html]
+
+```
+```
+
+```bash
+```
+

@@ -138,3 +138,11 @@ python manage.py startapp blocks
 ```bash
 ```
 
+## 563. Enhancing Wagtail StreamBlocks with Custom Context
+
+```
+```
+
+```bash
+```
+

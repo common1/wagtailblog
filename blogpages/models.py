@@ -102,14 +102,14 @@ class BlogDetail(Page):
         
         errors = {}
         
-        if 'blog' in self.title.lower():
-            errors['title'] = "Title cannot have the word 'blog'"
+        # if 'blog' in self.title.lower():
+        #     errors['title'] = "Title cannot have the word 'blog'"
 
-        if 'blog' in self.subtitle.lower():
-            errors['subtitle'] = "Subtitle cannot have the word 'blog'"
+        # if 'blog' in self.subtitle.lower():
+        #     errors['subtitle'] = "Subtitle cannot have the word 'blog'"
         
-        if 'blog' in self.slug.lower():
-            errors['slug'] = "Slug cannot have the word 'blog'"
+        # if 'blog' in self.slug.lower():
+        #     errors['slug'] = "Slug cannot have the word 'blog'"
         
-        if errors:
-            raise ValidationError(errors)
+        # if errors:
+        #     raise ValidationError(errors)

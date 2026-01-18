@@ -1,7 +1,11 @@
 from django.db import models
 
 from wagtail.models import Page
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import (
+    FieldPanel,
+    MultiFieldPanel,
+    InlinePanel,
+)
 from wagtail.fields import RichTextField
 from wagtail.images import get_image_model
 from wagtail.documents import get_document_model

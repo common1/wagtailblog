@@ -92,8 +92,8 @@ class BlogDetail(Page):
     subpage_types = []
     
     content_panels = Page.content_panels + [
+        FieldPanel('subtitle', read_only=True),
         FieldPanel('body'),
-        FieldPanel('subtitle'),
         FieldPanel('tags'),
     ]
 

@@ -154,3 +154,11 @@ python manage.py startapp blocks
 ```bash
 ```
 
+## 565. Advanced Wagtail Interfaces with Panel Types (and Orderables!)
+
+```
+```
+
+```bash
+```
+

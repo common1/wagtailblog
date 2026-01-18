@@ -8,10 +8,18 @@ class TextBlock(blocks.TextBlock):
         super().__init__(
             **kwargs,
             help_text = "This is from my TextBlock (help text is here)",
-            max_length=5,
+            max_length=10,
             min_length=2,
             required=False,
         )        
+
+    def clean(self, value):
+        value = super().clean(value)
+        
+        if "wordpress" in value.lower():
+            raise ValidationError("The word 'wordpress' is not allowed.")
+
+        return value
 
     class Meta:
         template = "blocks/text_block.html"
@@ -28,6 +36,7 @@ class InfoBlock(blocks.StaticBlock):
         label = "General Information"
         group = "Standalone blocks"
 
+from wagtail.blocks import StructBlockValidationError, ListBlockValidationError
 
 class FAQBlock(blocks.StructBlock):
     question = blocks.CharBlock()
@@ -35,11 +44,33 @@ class FAQBlock(blocks.StructBlock):
         features = ['bold', 'italic',]
     )
 
+    # def clean(self, value):
+    #     cleaned_data = super().clean(value)
+    #     if 'wordpress' in str(cleaned_data['answer']).lower():
+    #         raise StructBlockValidationError(
+    #             block_errors={
+    #                 'answer': ValidationError("We don't like WordPress here!")
+    #             }
+    #         )
+    #     return cleaned_data
 
 class FAQListBlock(blocks.ListBlock):
     def __init__(self, **kwargs):
         super().__init__(FAQBlock(), **kwargs)
         
+    def clean(self, value):
+        cleaned_data = super().clean(value)
+        errors = {}
+
+        for index, obj in enumerate(cleaned_data):
+            if 'wordpres' in str(obj['answer']).lower():
+                errors[index] = ValidationError("We don't like WordPress here!")
+
+        if errors:
+            raise ListBlockValidationError(block_errors=errors)
+
+        return cleaned_data
+
     class Meta:
         min_num = 1
         max_num = 5
@@ -58,6 +89,17 @@ class CarouselBlock(blocks.StreamBlock):
         ]
     )
     
+    def clean(self, value):
+        images = [item for item in value if item.block_type == 'image']
+        quotations = [item for item in value if item.block_type == 'quotation']
+
+        if not images or not quotations:
+            raise ValidationError("You must have at least one image and one quotations")
+
+        if len(images) != len(quotations):
+            raise ValidationError("You must have the same number of images and quotations")
+        return super().clean(value)
+
     class Meta:
         template = "blocks/carousel_block.html"
         group = "Iterables"

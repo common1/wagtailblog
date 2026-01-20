@@ -5,7 +5,7 @@
 
 {% block content %}
 
-{% if page.cta_url or page.cta_external_url %}
+{% comment %} {% if page.cta_url or page.cta_external_url %}
     {% if page.cta_url %}
         <a href="{{ page.cta_url.url }}">
             {{ page.cta_url.title }}
@@ -19,7 +19,12 @@
 <br>
 {% if page.get_cta_url %}
     {{ page.get_cta_url }}
-{% endif %}
+{% endif %} {% endcomment %}
+
+
+{% for image in page.gallery_images.all %}
+    {{ image }}
+{% endfor %}
 
 {% comment %} 
     {% if page.custom_document %}

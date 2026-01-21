@@ -162,3 +162,11 @@ python manage.py startapp blocks
 ```bash
 ```
 
+## 566. New Wagtail Caching Techniques
+
+```
+```
+
+```bash
+```
+

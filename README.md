@@ -170,3 +170,11 @@ python manage.py startapp blocks
 ```bash
 ```
 
+## 567. Unleashing the Power of Wagtail Hooks
+
+```
+```
+
+```bash
+```
+

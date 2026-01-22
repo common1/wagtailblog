@@ -1,15 +1,28 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtail_cache %}
 
 {% block content %}
 
+    {% comment %}     
+    {% cache %} -> {% wagtail_cache %} -> {% wagtailpagecache %}
+
+    {% endcomment %}
+
+    {% wagtailcache 500 "title-cache" %}
+        <h1>
+            {{ page.title }}
+        </h1>
+    {% endwagtailcache %}
+
+    {% wagtailcache 500 "streamfields" %}
     {% for block in page.body %}
     
-    {% if block.block_type in 'text,info,faq,carousel,call_to_action_1,image' %}
-        {% include_block block %}
-    {% endif %}
+        {% if block.block_type in 'text,info,faq,carousel,call_to_action_1,image' %}
+            {% include_block block %}
+        {% endif %}
 
     {% endfor %}
+    {% endwagtailcache %}
 
 {% endblock content %}
 

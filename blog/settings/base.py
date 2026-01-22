@@ -188,3 +188,11 @@ WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
 WAGTAILIMAGES_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'tiff', 'bmp', 'webp']
 
 WAGTAILDOCS_DOCUMENT_MODEL = "documents.CustomDocument"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / ".cache",
+    }
+}
+

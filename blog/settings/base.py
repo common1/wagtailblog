@@ -196,3 +196,6 @@ CACHES = {
     }
 }
 
+WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'login.html'
+PASSWORD_REQUIRED_TEMPLATE = 'password_required.html'
+

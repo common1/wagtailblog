@@ -178,3 +178,11 @@ python manage.py startapp blocks
 ```bash
 ```
 
+## 568. Private Pages in Wagtail CMS
+
+```
+```
+
+```bash
+```
+

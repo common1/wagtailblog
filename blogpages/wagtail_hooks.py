@@ -28,10 +28,6 @@ class TagSnippetViewSet(SnippetViewSet):
 class AuthorSnippetViewSet(SnippetViewSet):
     model = Author
     add_to_admin_menu = False
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('bio')
-    ]
 
 from django.core.cache import cache
 from wagtail.coreutils import make_wagtail_template_fragment_key
@@ -41,4 +37,13 @@ from wagtail import hooks
 @hooks.register('after_publish_page')
 def delete_all_cache(request, page):
     cache.clear()
-    
+
+from django.contrib.auth.models import Permission
+
+@hooks.register('register_permission')
+def customer_permission_numero_uno():
+    return Permission.objects.filter(
+        content_type__app_label='blogpages',
+        codename='can_edit_author_name,'
+    )
+

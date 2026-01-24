@@ -186,3 +186,20 @@ python manage.py startapp blocks
 ```bash
 ```
 
+## 569. Supercharging Wagtail Snippets with Advanced Features
+
+```
+```
+
+```bash
+python manage.py update_index
+```
+
+## 570-571 Wagtail Permission
+
+```
+```
+
+```bash
+```
+

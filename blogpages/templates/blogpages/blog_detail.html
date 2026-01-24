@@ -24,6 +24,8 @@
     {% endfor %}
     {% endwagtailcache %}
 
+    {% include "includes/author_dark_mode.html" with object=self.author %}
+
 {% endblock content %}
 
 {% comment %} 

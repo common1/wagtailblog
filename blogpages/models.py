@@ -45,13 +45,67 @@ class BlogPageTags(TaggedItemBase):
         on_delete=models.CASCADE
     )
 
-class Author(models.Model):
+from django.contrib.contenttypes.fields import GenericRelation
+from wagtail.admin.panels import PublishingPanel
+from wagtail.models import (
+    DraftStateMixin, 
+    RevisionMixin, 
+    LockableMixin,
+    PreviewableMixin,
+)
+
+from wagtail.search import index
+
+class Author(
+    PreviewableMixin,
+    LockableMixin, 
+    DraftStateMixin, 
+    RevisionMixin,
+    index.Indexed,
+    models.Model
+):
     name = models.CharField(max_length=255)
     bio = models.TextField()
+    revisions = GenericRelation("wagtailcore.Revision", related_query_name="author")
        
+    panels = [
+        FieldPanel('name', permission="blogpages.can_edit_author_name"),
+        FieldPanel('bio'),
+        PublishingPanel(),
+    ]
+
+    search_fields = [
+        index.FilterField('name'),
+        index.SearchField('name'),
+        index.AutocompleteField('name'),
+    ]
+
     def __str__(self):
         return self.name
     
+    @property
+    def preview_modes(self):
+        return PreviewableMixin.DEFAULT_PREVIEW_MODES + [
+            ("dark_mode", "Dark Mode"),
+        ]
+    
+    def get_preview_template(self, request, mode_name):
+        templates = {
+            "": "includes/author.html", # Default
+            "dark_mode": "includes/author_dark_mode.html",
+        }
+        return templates.get(mode_name, templates[""])
+    
+    def get_preview_context(self, request, mode_name):
+        context = super().get_preview_context(request, mode_name)
+        if mode_name == "dark_mode":
+            context['warning'] = "This is a preview in dark mode"
+        return context
+    
+    class Meta:
+        permissions = [
+            ("can_edit_author_name", "Can edit author name")
+        ]
 # 1. ImageChooserBlock
 # 2. DocumentChooserBlock
 # 3. PageChooserBlock
@@ -60,7 +114,14 @@ class Author(models.Model):
 class BlogDetail(Page):   
     subtitle = models.CharField(max_length=100, blank=True)
     tags = ClusterTaggableManager(through=BlogPageTags, blank=True)
-    
+    author = models.ForeignKey(
+        'blogpages.Author',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
     body = StreamField(
         [
             ('info', custom_blocks.InfoBlock()),

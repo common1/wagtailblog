@@ -203,3 +203,12 @@ python manage.py update_index
 ```bash
 ```
 
+## 572. Global Navigation Using Django Context Processors
+
+```
+```
+
+```bash
+python manage.py startapp site_settings
+```
+

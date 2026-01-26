@@ -206,6 +206,7 @@ python manage.py update_index
 ## 572. Global Navigation Using Django Context Processors
 
 ```
+Part 2
 ```
 
 ```bash
